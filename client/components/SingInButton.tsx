@@ -23,7 +23,9 @@ function SignInButton() {
         <button onClick={handleSignOut}>Sign out</button>
       </IfAuthenticated>
       <IfNotAuthenticated>
-        <button onClick={handleSignIn}>Sign in</button>
+        <button className="bg-slate-500" onClick={handleSignIn}>
+          Sign in
+        </button>
       </IfNotAuthenticated>
     </div>
   )
