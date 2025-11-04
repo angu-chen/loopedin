@@ -17,13 +17,21 @@ function SignInButton() {
   }
 
   return (
-    <div>
+    <div className="flex gap-1">
       <IfAuthenticated>
         {user && <p>Signed in as: {user?.nickname}</p>}
-        <button onClick={handleSignOut}>Sign out</button>
+        <button
+          className="rounded-sm bg-[--color-lightBlue] px-1"
+          onClick={handleSignOut}
+        >
+          Sign out
+        </button>
       </IfAuthenticated>
       <IfNotAuthenticated>
-        <button className="bg-slate-500" onClick={handleSignIn}>
+        <button
+          className="rounded-sm bg-[--color-lightBlue] px-1"
+          onClick={handleSignIn}
+        >
           Sign in
         </button>
       </IfNotAuthenticated>
