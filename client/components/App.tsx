@@ -5,7 +5,6 @@ function App() {
   return (
     <>
       <div className="min-h-screen bg-[#fdf0d5]">
-        <SignInButton />
         <Navbar />
       </div>
     </>
