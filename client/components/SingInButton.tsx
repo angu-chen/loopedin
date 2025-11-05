@@ -20,6 +20,7 @@ function SignInButton() {
     <div className="flex gap-1">
       <IfAuthenticated>
         {user && <p>Signed in as: {user?.nickname}</p>}
+
         <button
           className="rounded-sm bg-[--color-lightBlue] px-1"
           onClick={handleSignOut}
