@@ -1,13 +1,14 @@
 import SignInButton from './SingInButton.tsx'
+import Navbar from './Navbar.tsx'
 import { Outlet } from 'react-router'
 
 function App() {
   return (
     <>
-      <div className="app">
+      <div className="min-h-screen bg-[#fdf0d5]">
         <header>
           <SignInButton />
-          <h1 className="text-3xl font-bold underline">LoopedIn</h1>
+          <Navbar />
         </header>
         <main>
           <Outlet />
