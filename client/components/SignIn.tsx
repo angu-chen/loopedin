@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import SignUpForm from './SignUpForm'
 
 function SignIn() {
   const authData = useAuth0()
@@ -42,6 +43,7 @@ function SignIn() {
             </button>
           </div>
         </div>
+        <SignUpForm />
       </IfNotAuthenticated>
       <IfAuthenticated>
         <div className="my-20 flex w-9/12 flex-col items-center rounded-md bg-[#fdf4e0] p-5 shadow-lg shadow-gray-300 ">
