@@ -12,7 +12,7 @@ export async function seed(knex) {
       username: 'alex.loop',
       fullname: 'Alex Johnson',
       location: 'New York, USA',
-      img: '/img/users/alex.jpg',
+      img: '/img/users/alex.svg',
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ export async function seed(knex) {
       username: 'sara.w',
       fullname: 'Sara Williams',
       location: 'London, UK',
-      img: '/img/users/sara.jpg',
+      img: '/img/users/sara.svg',
     },
     {
       id: 3,
@@ -28,7 +28,7 @@ export async function seed(knex) {
       username: 'lee.ch',
       fullname: 'Lee Chen',
       location: 'Singapore',
-      img: '/img/users/lee.jpg',
+      img: '/img/users/lee.svg',
     },
     {
       id: 4,
@@ -36,7 +36,7 @@ export async function seed(knex) {
       username: 'mariah.g',
       fullname: 'Mariah Gomez',
       location: 'Madrid, Spain',
-      img: '/img/users/mariah.jpg',
+      img: '/img/users/mariah.svg',
     },
     {
       id: 5,
@@ -44,7 +44,6 @@ export async function seed(knex) {
       username: 'david.k',
       fullname: 'David Kim',
       location: 'Seoul, South Korea',
-      img: '/img/users/david.jpg',
     },
     {
       id: 6,
@@ -52,7 +51,7 @@ export async function seed(knex) {
       username: 'nina.codes',
       fullname: 'Nina Patel',
       location: 'Toronto, Canada',
-      img: '/img/users/nina.jpg',
+      img: '/img/users/nina.svg',
     },
   ])
 }
