@@ -23,13 +23,16 @@ export default function ViewAllProfiles() {
   const users: User[] = userQuery.data
 
   return (
-    <div className="bg-cream m-4 flex flex-auto flex-row flex-wrap items-center gap-10">
-      {users.map(
-        (user) =>
-          user.authId !== currentAuthId && (
-            <ProfileCard key={user.id} user={user} />
-          ),
-      )}
+    <div className="text-center ">
+      <h2 className="text-3xl font-bold text-gray-700">Profiles</h2>
+      <div className="bg-cream m-4 flex flex-auto flex-row flex-wrap items-center gap-10">
+        {users.map(
+          (user) =>
+            user.authId !== currentAuthId && (
+              <ProfileCard key={user.id} user={user} />
+            ),
+        )}
+      </div>
     </div>
   )
 }

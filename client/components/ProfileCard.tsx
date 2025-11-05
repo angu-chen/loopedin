@@ -35,7 +35,7 @@ export default function ProfileCard({ user }: Props) {
         <div className="mx-6 mt-6 border-t border-gray-200 pt-6 text-center dark:border-gray-700/50">
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-6">
-              <p className="mb-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+              <p className="mb-4 font-light leading-relaxed text-gray-900 dark:text-gray-400">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
                 turpis orci.
               </p>
