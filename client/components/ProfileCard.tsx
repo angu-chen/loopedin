@@ -12,8 +12,9 @@ export default function ProfileCard({ user }: Props) {
           <div className="flex w-full justify-center">
             <div className="relative">
               <img
-                src={'/images/placeholder-img.svg'}
-                alt={`${user.fullname} profile`}
+                //Todo: add user images for seeds
+                src={user.img ? user.img : '/img/users/placeholder-img.svg'}
+                alt={`Avatar of ${user.fullname ? user.fullname : ''}`}
                 className="-ml-18 absolute -m-16 max-w-[150px] rounded-full border-8 border-white align-middle lg:-ml-16 dark:border-gray-800 dark:shadow-xl"
               />
             </div>
@@ -21,11 +22,12 @@ export default function ProfileCard({ user }: Props) {
         </div>
         <div className="mt-20 text-center">
           <h3 className="mb-1 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
-            {user.fullname}
+            {user.fullname ? user.fullname : ''}
           </h3>
           <div className="mx-auto flex w-full flex-row justify-center space-x-2 text-center">
             <div className="font-mono text-xl font-bold tracking-wide text-gray-600 dark:text-gray-300">
-              {user.username} / {user.location}
+              {user.username ? user.username : ''} /{' '}
+              {user.location ? user.location : ''}
             </div>
           </div>
         </div>
