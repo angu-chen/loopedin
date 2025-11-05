@@ -15,12 +15,10 @@ export default function ViewAllProfiles() {
 
   const users: User[] = userQuery.data
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900">
-      <div className="flex flex-auto flex-row flex-wrap items-center gap-4 bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900">
-        {users.map((user) => (
-          <ProfileCard key={user.id} user={user} />
-        ))}
-      </div>
+    <div className="bg-cream m-4 flex flex-auto flex-row flex-wrap items-center gap-10">
+      {users.map((user) => (
+        <ProfileCard key={user.id} user={user} />
+      ))}
     </div>
   )
 }
