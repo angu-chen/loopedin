@@ -1,9 +1,6 @@
-import { useFruits } from '../hooks/useFruits.ts'
 import SignInButton from './SingInButton.tsx'
 
 function App() {
-  const { data } = useFruits()
-
   return (
     <>
       <div className="app">
