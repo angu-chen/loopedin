@@ -1,13 +1,19 @@
 import SignInButton from './SingInButton.tsx'
 import Navbar from './Navbar.tsx'
-import SignIn from './SignIn.tsx'
+import { Outlet } from 'react-router'
 
 function App() {
   return (
     <>
       <div className="min-h-screen bg-[#fdf0d5]">
-        <Navbar />
-        <SignIn />
+        <header>
+          <SignInButton />
+          <Navbar />
+        </header>
+        <main>
+          <Outlet />
+        </main>
+        <footer></footer>
       </div>
     </>
   )
