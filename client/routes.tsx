@@ -1,3 +1,9 @@
 import { createRoutesFromElements, Route } from 'react-router'
 import App from './components/App.tsx'
-export default createRoutesFromElements(<Route index element={<App />} />)
+import ViewAllProfiles from './components/ViewAllProfiles.tsx'
+
+export default createRoutesFromElements(
+  <Route path="/" element={<App />}>
+    <Route index element={<ViewAllProfiles />} />
+  </Route>,
+)
