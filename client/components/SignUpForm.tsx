@@ -11,7 +11,7 @@ function SignUpForm() {
     username: '',
     fullname: '',
     location: '',
-    img: '',
+    img: '/img/users/placeholder-img.svg',
   })
 
   const [missingContent, setMissingContent] = useState(false)
