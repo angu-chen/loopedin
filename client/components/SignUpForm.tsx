@@ -39,7 +39,7 @@ function SignUpForm() {
       user.username.length === 0 ||
       user.location.length === 0
     ) {
-      // setMissingContent(true)
+      setMissingContent(true)
     } else {
       console.log('adding new user')
       createNewUser.mutate(
