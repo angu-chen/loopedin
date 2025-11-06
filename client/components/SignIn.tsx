@@ -1,6 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-import SignUpForm from './SignUpForm'
 import { useUser } from '../hooks/useUser'
 import { useEffect } from 'react'
 import { User } from '../../models/user'
@@ -16,13 +15,8 @@ function SignIn() {
     if (authData.isAuthenticated && userQuery.data) {
       const users: User[] = userQuery.data
       const userAuthId = users.map((user) => user.authId)
-      console.log('is authenticated', authData.isAuthenticated)
-      console.log('using effects, Auth ids are ', userAuthId)
 
-      if (userAuthId.includes(authData.user?.sub)) {
-        console.log('user is not new')
-      } else {
-        console.log('user is new')
+      if (!userAuthId.includes(authData.user?.sub)) {
         navigate('/signUp')
       }
     }
@@ -98,7 +92,10 @@ function SignIn() {
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <button className="rounded-2xl border-2 border-black px-2 text-xl font-semibold shadow-md shadow-gray-400 hover:bg-gray-900 hover:text-[#fdf4e0] ">
+            <button
+              onClick={() => navigate('/profiles')}
+              className="rounded-2xl border-2 border-black px-2 text-xl font-semibold shadow-md shadow-gray-400 hover:bg-gray-900 hover:text-[#fdf4e0] "
+            >
               {' '}
               Explore Now
             </button>
