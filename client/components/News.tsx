@@ -60,7 +60,7 @@ export default function News() {
 
   return (
     <div className="min-h-screen bg-[#fdf0d5] px-8 py-10 text-center">
-      <h2 className="text-black-#000 mb-6 text-3xl font-bold">News</h2>
+      <h2 className="text-black-#000 mb-8 font-serif text-5xl">News</h2>
       {error && <p className="text-red-600">{error}</p>}
 
       {!userLocation && !error && <p>Getting your location...</p>}
