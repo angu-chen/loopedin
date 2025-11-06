@@ -15,4 +15,17 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.post('/', async (req, res) => {
+  try {
+    const newUser = req.body
+    await db.addUser(newUser)
+    res.sendStatus(204)
+  } catch (error) {
+    console.log(
+      error instanceof Error ? error.message : 'Error creating new user',
+    )
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
 export default router
