@@ -31,6 +31,7 @@ export function useUserMutation<TData = unknown, TVariables = unknown>(
 
 export function useAddUserMutation() {
   const queryClient = useQueryClient()
+  const navigate = useNavigate()
   const mutation = useMutation({
     mutationFn: addNewUser,
     onSuccess: () => {

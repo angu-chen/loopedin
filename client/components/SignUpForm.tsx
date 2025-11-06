@@ -3,7 +3,7 @@ import { useAddUserMutation, useUserMutation } from '../hooks/useUser'
 import { addNewUser } from '../apis/user'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useNavigate } from 'react-router'
-import { QueryClient } from '@tanstack/react-query'
+import { QueryClient, useQueryClient } from '@tanstack/react-query'
 
 function SignUpForm() {
   const [user, setUser] = useState({
@@ -39,13 +39,14 @@ function SignUpForm() {
       user.username.length === 0 ||
       user.location.length === 0
     ) {
-      setMissingContent(true)
+      // setMissingContent(true)
     } else {
+      console.log('adding new user')
       createNewUser.mutate(
         { ...user, authId: authData.user?.sub ?? 'n/a' },
         {
           onSuccess: () => {
-            navigate('/')
+            navigate('/profiles')
           },
         },
       )

@@ -75,7 +75,6 @@ function SignIn() {
             </button>
           </div>
         </div>
-        <SignUpForm />
       </IfNotAuthenticated>
       <IfAuthenticated>
         <div className="my-20 flex w-9/12 flex-col items-center rounded-md bg-[#fdf4e0] p-5 shadow-lg shadow-gray-300 ">
