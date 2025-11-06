@@ -1,33 +1,34 @@
 import { useState } from 'react'
-
-interface UserData {
-  authId: string
-  username: string
-  fullname: string
-  location: string
-  img: string
-}
+import { useUserMutation } from '../hooks/useUser'
+import { addNewUser } from '../apis/user'
 
 function SignUpForm() {
-  const [username, setUsername] = useState({
-    authID: '',
+  const [user, setUser] = useState({
+    authId: '',
     username: '',
     fullname: '',
     location: '',
     img: '',
   })
 
+  const createNewUser = useUserMutation(addNewUser)
+
   const handleChange = (
     key: string,
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const newusername = { ...username, [key]: e.target.value }
-    setUsername(newusername)
+    const newusername = { ...user, [key]: e.target.value }
+    setUser(newusername)
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    createNewUser.mutate(user)
   }
 
   return (
     <div>
-      <form className="flex flex-col gap-2">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <div>
           <label className="mx-2" htmlFor="username">
             Username
@@ -37,7 +38,7 @@ function SignUpForm() {
             type="text"
             id="username"
             name="username"
-            value={username.username}
+            value={user.username}
           />
         </div>
         <div>
@@ -49,8 +50,11 @@ function SignUpForm() {
             type="text"
             id="fullname"
             name="fullname"
-            value={username.fullname}
+            value={user.fullname}
           />
+        </div>
+        <div>
+          <button type="submit">Submit</button>
         </div>
       </form>
     </div>
