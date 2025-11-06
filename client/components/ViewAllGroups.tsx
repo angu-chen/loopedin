@@ -63,7 +63,7 @@ export default function ViewAllGroups() {
         </div>
       </IfNotAuthenticated>
       <IfAuthenticated>
-        <div className="my-10">
+        <div className="my-10 flex w-full justify-between ">
           <div>
             <h1 className="font-bold italic sm:text-2xl md:text-4xl lg:text-6xl">
               <span className=" font-extrabold italic tracking-wide text-[#780000] sm:text-2xl md:text-4xl lg:text-6xl">
@@ -71,6 +71,12 @@ export default function ViewAllGroups() {
               </span>{' '}
               Groups
             </h1>
+          </div>
+          <div className="self-end">
+            <button className=" rounded-2xl border-2 border-black px-2 text-lg font-semibold shadow-md shadow-gray-400 hover:bg-gray-900 hover:text-[#fdf4e0] ">
+              {' '}
+              Create Group
+            </button>
           </div>
         </div>
         <div className="flex flex-col gap-5">
