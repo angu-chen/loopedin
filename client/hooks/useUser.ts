@@ -4,7 +4,8 @@ import {
   useQueryClient,
   MutationFunction,
 } from '@tanstack/react-query'
-import { getAllUsers } from '../apis/user.ts'
+import { addNewUser, getAllUsers } from '../apis/user.ts'
+import { useNavigate } from 'react-router'
 
 export function useUser() {
   const query = useQuery({ queryKey: ['userList'], queryFn: getAllUsers })
@@ -25,6 +26,18 @@ export function useUserMutation<TData = unknown, TVariables = unknown>(
     },
   })
 
+  return mutation
+}
+
+export function useAddUserMutation() {
+  const queryClient = useQueryClient()
+  const navigate = useNavigate()
+  const mutation = useMutation({
+    mutationFn: addNewUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['userList'] })
+    },
+  })
   return mutation
 }
 

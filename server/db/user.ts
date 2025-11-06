@@ -1,5 +1,5 @@
 import db from './connection.ts'
-import { User } from '../../models/user.ts'
+import { User, UserData } from '../../models/user.ts'
 
 const userSelect = [
   'id',
@@ -13,4 +13,16 @@ const userSelect = [
 export async function getAllUsers(): Promise<User[]> {
   const userList = await db('user').select(...userSelect)
   return userList as User[]
+}
+
+export async function addUser(user: UserData) {
+  const response = await db('user').insert({
+    auth_id: user.authId,
+    username: user.username,
+    fullname: user.fullname,
+    location: user.location,
+    img: user.img,
+  })
+
+  return response
 }
