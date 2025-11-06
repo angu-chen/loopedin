@@ -1,9 +1,41 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import SignUpForm from './SignUpForm'
+import { useUser } from '../hooks/useUser'
+import { useEffect } from 'react'
+import { User } from '../../models/user'
+import { useNavigate } from 'react-router'
 
 function SignIn() {
   const authData = useAuth0()
+
+  const userQuery = useUser()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (authData.isAuthenticated && userQuery.data) {
+      const users: User[] = userQuery.data
+      const userAuthId = users.map((user) => user.authId)
+      console.log('is authenticated', authData.isAuthenticated)
+      console.log('using effects, Auth ids are ', userAuthId)
+
+      if (userAuthId.includes(authData.user?.sub)) {
+        console.log('user is not new')
+      } else {
+        console.log('user is new')
+        navigate('/signUp')
+      }
+    }
+  })
+
+  if (userQuery.isError) {
+    console.log('Error loading profiles')
+  }
+
+  if (userQuery.isPending || !userQuery.data) {
+    console.log('loading....')
+    return <p>loading...</p>
+  }
 
   const handleSignIn = () => {
     authData.loginWithPopup()

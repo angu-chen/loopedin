@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useUserMutation } from '../hooks/useUser'
 import { addNewUser } from '../apis/user'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function SignUpForm() {
   const [user, setUser] = useState({
@@ -10,6 +11,8 @@ function SignUpForm() {
     location: '',
     img: '',
   })
+
+  const authData = useAuth0()
 
   const createNewUser = useUserMutation(addNewUser)
 
@@ -23,7 +26,7 @@ function SignUpForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    createNewUser.mutate(user)
+    createNewUser.mutate({ ...user, authId: authData.user?.sub ?? 'n/a' })
   }
 
   return (
