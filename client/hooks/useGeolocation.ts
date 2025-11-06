@@ -1,18 +1,17 @@
 import { useState } from 'react'
 
 export const useGeolocation = () => {
-  const [locationInfo, setLocationInfo] = useState(null)
-  const [locationErr, setLocationErr] = useState(null)
+  const [locationInfo, setLocationInfo] =
+    useState<GeolocationCoordinates | null>(null)
+  const [locationErr, setLocationErr] = useState<string | null>(null)
 
   const { geolocation } = navigator
 
-  const successFn = (res) => {
-    console.log({ res })
+  const successFn = (res: GeolocationPosition) => {
     setLocationInfo(res.coords)
   }
 
-  const errorFn = (res) => {
-    console.log({ res })
+  const errorFn = (res: GeolocationPositionError) => {
     setLocationErr(res.message)
   }
 
@@ -22,3 +21,5 @@ export const useGeolocation = () => {
 
   return { locationErr, locationInfo }
 }
+
+//Coded following instructional video https://www.youtube.com/watch?v=xq5c0oqsS8U
