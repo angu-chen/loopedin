@@ -2,7 +2,16 @@ import { useGroup } from '../hooks/useGroup'
 import type { Group } from '../../models/group'
 
 import { useAuth0 } from '@auth0/auth0-react'
-import { IfNotAuthenticated } from './Authenticated'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import GroupCard from './GroupCard'
+
+const fakeGroup = {
+  id: 3,
+  name: 'Asia Tech Circle',
+  description:
+    'Join tech innovators and entrepreneurs across Asia discussing trends, startups, and the future of digital innovation.',
+  createdByUserId: 3,
+}
 
 export default function ViewAllGroups() {
   const authData = useAuth0()
@@ -41,6 +50,19 @@ export default function ViewAllGroups() {
           </div>
         </div>
       </IfNotAuthenticated>
+      <IfAuthenticated>
+        <div className="my-10">
+          <div>
+            <h1 className="font-bold italic sm:text-2xl md:text-4xl lg:text-6xl">
+              <span className=" font-extrabold italic tracking-wide text-[#780000] sm:text-2xl md:text-4xl lg:text-6xl">
+                LoopedIn
+              </span>{' '}
+              Groups
+            </h1>
+          </div>
+        </div>
+        <GroupCard group={fakeGroup} />
+      </IfAuthenticated>
     </div>
   )
 }

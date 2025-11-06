@@ -1,5 +1,6 @@
 export interface GroupData {
   name: string
+  description: string
   createdByUserId: number
 }
 
