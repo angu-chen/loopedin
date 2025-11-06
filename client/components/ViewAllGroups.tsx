@@ -16,6 +16,18 @@ const fakeGroup = {
 export default function ViewAllGroups() {
   const authData = useAuth0()
 
+  const groupQuery = useGroup()
+
+  if (groupQuery.isError) {
+    return <p>Error loading groups</p>
+  }
+
+  if (groupQuery.isPending || !groupQuery.data) {
+    return <p> Loading....</p>
+  }
+
+  const groups: Group[] = groupQuery.data
+
   const handleSignIn = () => {
     authData.loginWithPopup()
   }
@@ -61,7 +73,11 @@ export default function ViewAllGroups() {
             </h1>
           </div>
         </div>
-        <GroupCard group={fakeGroup} />
+        <div className="flex flex-col gap-5">
+          {groups.map((group) => (
+            <GroupCard key={group.id} group={group} />
+          ))}
+        </div>
       </IfAuthenticated>
     </div>
   )
