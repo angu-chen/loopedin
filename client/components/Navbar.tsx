@@ -43,7 +43,7 @@ const Navbar: FC = () => {
             News
           </Link>
           <Link
-            to="/"
+            to="/weather"
             className="relative text-black transition duration-200 before:absolute before:left-0 before:top-1/2 before:h-[2px] before:w-0 before:bg-[#c1121f] before:transition-all before:duration-300 hover:text-[#c1121f] hover:before:w-full"
           >
             Weather
