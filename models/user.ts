@@ -4,6 +4,8 @@ export interface UserData {
   fullname?: string
   location?: string
   img?: string
+  bio?: string
+  coverImg?: string
 }
 
 export interface User extends UserData {
