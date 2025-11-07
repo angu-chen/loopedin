@@ -6,7 +6,7 @@ interface Props {
 
 export default function GroupCard(props: Props) {
   return (
-    <div className=" flex h-48 flex-col overflow-hidden rounded-xl border-2 border-gray-800 p-3 shadow-lg shadow-gray-400">
+    <div className=" flex h-48 flex-col overflow-hidden rounded-xl border-2 border-[#c1121f] bg-[white] p-3 shadow-lg shadow-gray-400">
       <div className="mb-3 flex items-center">
         <div className=" h-20 w-20 rounded-xl border-2 border-gray-800 bg-white shadow-md shadow-gray-400">
           <img
