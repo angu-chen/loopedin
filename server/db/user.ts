@@ -20,11 +20,19 @@ export async function getAllUsers(): Promise<User[]> {
 export async function getUserByAuthId(
   authId: string,
 ): Promise<User | undefined> {
-  const userList = await db('user')
+  const user = await db('user')
     .where('auth_id', authId)
     .select(...userSelect)
     .first()
-  return userList as User
+  return user as User | undefined
+}
+
+export async function getUserByLoopId(id: number): Promise<User | undefined> {
+  const user = await db('user')
+    .where({ id })
+    .select(...userSelect)
+    .first()
+  return user as User | undefined
 }
 
 export async function addUser(user: UserData) {

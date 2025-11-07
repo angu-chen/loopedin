@@ -8,8 +8,7 @@ import {
   addNewUser,
   getAllUsers,
   getUserByAuthId,
-  // updateUserByAuthId,
-  // deleteUserByAuthId,
+  getUserByLoopId,
 } from '../apis/user.ts'
 
 export function useGetAllUsers() {
@@ -21,12 +20,21 @@ export function useGetAllUsers() {
 
 export function useGetUserByAuthId(id: string) {
   const query = useQuery({
-    queryKey: [`user${id}`],
+    queryKey: [`userAuth${id}`],
     queryFn: () => getUserByAuthId(id),
   })
   return {
     ...query,
-    addUser: useAddUser(),
+  }
+}
+
+export function useGetUserByLoopId(id: number) {
+  const query = useQuery({
+    queryKey: [`userLoop${id}`],
+    queryFn: () => getUserByLoopId(id),
+  })
+  return {
+    ...query,
   }
 }
 
@@ -55,14 +63,6 @@ export function useAddUserMutation() {
   return mutation
 }
 
-function useAddUser() {
-  return useUserMutation(addNewUser)
-}
-
-// function useUpdateUser() {
-//   return useUserMutation(updateUserById)
-// }
-
-// function useDeleteUser() {
-//   return useUserMutation(deleteUserById)
+// function useAddUser() {
+//   return useUserMutation(addNewUser)
 // }
