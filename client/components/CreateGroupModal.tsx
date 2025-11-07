@@ -58,9 +58,14 @@ export default function CreateGroupModal({ open, createGroup, onClose }) {
   }
   return (
     // className="flex items-center justify-center"
-    <div>
+    <>
       <div className="fixed bottom-0 left-0 right-0 top-0 z-10 bg-[rgba(0,0,0,0.7)]"></div>
-      <div className=" fixed left-1/2 top-1/2 z-10 h-auto w-2/5 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-[#fdf4e0] p-5 shadow-lg shadow-gray-300">
+      <div className="relative left-1/2 top-1/2 z-10 h-auto w-2/5 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-[#fdf4e0] p-5 shadow-lg shadow-gray-300">
+        <div className="absolute right-2 top-1">
+          <button className="hover:font-bold" onClick={resetClose}>
+            X
+          </button>
+        </div>
         <h1 className="text-2xl"> Create your Group</h1>
         <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
           <div className="flex flex-col">
@@ -109,6 +114,6 @@ export default function CreateGroupModal({ open, createGroup, onClose }) {
           </div>
         </form>
       </div>
-    </div>
+    </>
   )
 }
