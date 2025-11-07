@@ -76,7 +76,7 @@ export default function ViewProfileDetail({ id }: Props) {
           </button>
         </div>
         <div className="pl-20">
-          <h2 className="text-4xl font-semibold">
+          <h2 className="pb-2 text-4xl font-semibold">
             {user.fullname ||
               (user.username && (
                 <h2>{user.fullname ? user.fullname : user.username}</h2>
@@ -84,25 +84,31 @@ export default function ViewProfileDetail({ id }: Props) {
           </h2>
         </div>
       </div>
+
       <div className="border-t-2 border-blue-950">
-        <div className="p-10">
+        <div className="px-10 py-5">
           {user.location && <p className="text-2xl"> {user.location}</p>}
           {user.bio && <p className="py-5 text-xl">{user.bio}</p>}
         </div>
-        <div className="p-10">
-          <h2>Groups</h2>
-          {groups.map((group) => (
-            <GroupCard group={group} key={group.name} />
-          ))}
-        </div>
-        <div className="p-10">
-          <h2>Posts</h2>
-          {posts.map((post) => (
-            <div key={post.id}>
-              <p>{post.text}</p>
-              <p>{post.created_at}</p>
-            </div>
-          ))}
+        <div className="flex flex-auto flex-row">
+          <div className="max-w-2xl p-10 text-center">
+            <h2 className=" p-4 text-2xl font-bold">Groups</h2>
+            {groups.map((group) => (
+              <GroupCard group={group} key={group.name} />
+            ))}
+          </div>
+          <div className="grow p-10 text-center">
+            <h2 className="p-4 text-2xl font-bold">Posts</h2>
+            {posts.map((post) => (
+              <div
+                key={post.id}
+                className="mb-6 rounded-xl border-2 border-gray-800 p-6 shadow-lg shadow-gray-400"
+              >
+                <p className="text-xl">{post.text}</p>
+                <p>{post.created_at}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
