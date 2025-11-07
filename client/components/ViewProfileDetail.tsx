@@ -67,6 +67,7 @@ export default function ViewProfileDetail({ id }: Props) {
           alt={`Avatar for ${user.fullname}`}
         />
         <div className="p-10 text-right ">
+          {/* //TODO - edit user functionality */}
           <button
             id="edit"
             onClick={handleClick}
