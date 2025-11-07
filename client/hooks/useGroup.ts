@@ -4,11 +4,11 @@ import { createGroup, getAllGroups } from '../apis/group.ts'
 
 export function useGroup() {
   const query = useQuery({ queryKey: ['groupList'], queryFn: getAllGroups })
-
+  const createGroup = useCreateGroup()
   return {
     ...query,
     // Extra queries go here e.g. addUser: useAddUser()
-    useCreateGroup,
+    createGroup,
   }
 }
 

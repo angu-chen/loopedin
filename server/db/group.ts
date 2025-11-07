@@ -14,7 +14,7 @@ export async function getAllGroups(): Promise<Group[]> {
 }
 
 export async function createGroup(group: GroupData) {
-  const response = await db('group').insert({
+  const response = await db('groups').insert({
     name: group.name,
     description: group.description,
     created_by_user_id: group.createdByUserId,

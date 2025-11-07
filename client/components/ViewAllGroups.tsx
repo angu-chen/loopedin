@@ -4,14 +4,7 @@ import type { Group } from '../../models/group'
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import GroupCard from './GroupCard'
-
-const fakeGroup = {
-  id: 3,
-  name: 'Asia Tech Circle',
-  description:
-    'Join tech innovators and entrepreneurs across Asia discussing trends, startups, and the future of digital innovation.',
-  createdByUserId: 3,
-}
+import CreateGroupModal from './CreateGroupModal'
 
 export default function ViewAllGroups() {
   const authData = useAuth0()
@@ -63,6 +56,7 @@ export default function ViewAllGroups() {
         </div>
       </IfNotAuthenticated>
       <IfAuthenticated>
+        <CreateGroupModal createGroup={groupQuery.createGroup.mutate} />
         <div className="my-10 flex w-full justify-between ">
           <div>
             <h1 className="font-bold italic sm:text-2xl md:text-4xl lg:text-6xl">
