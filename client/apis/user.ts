@@ -1,5 +1,5 @@
 import request from 'superagent'
-import type { User, UserData, UserWithPosts } from '../../models/user'
+import type { User, UserData, UserWithPostsAndGroups } from '../../models/user'
 
 const rootURL = new URL(`/api/v1`, document.baseURI)
 
@@ -16,11 +16,11 @@ export async function getUserByAuthId(authId: string): Promise<User> {
 }
 
 //GET to http://localhost:5173/api/v1/user/user-and-posts/:id
-export async function getUserAndPostsByLoopId(
+export async function getUserWithPostsAndGroups(
   id: number,
-): Promise<UserWithPosts> {
+): Promise<UserWithPostsAndGroups> {
   const response = await request.get(`${rootURL}/user/user-and-posts/${id}`)
-  return response.body as UserWithPosts
+  return response.body as UserWithPostsAndGroups
 }
 
 //GET to http://localhost:5173/api/v1/user/loop/:id

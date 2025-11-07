@@ -1,5 +1,5 @@
 import { useGetGroupsByUserId } from '../hooks/useGroup'
-import { useGetUserAndPostsByLoopId } from '../hooks/useUser'
+import { useGetUserByLoopId } from '../hooks/useUser'
 import GroupCard from './GroupCard'
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function ViewProfileDetail({ id }: Props) {
-  const { data: user, isError, isPending } = useGetUserAndPostsByLoopId(id)
+  const { data: user, isError, isPending } = useGetUserByLoopId(id)
   const { user: auth0user } = useAuth0()
   const {
     data: groups,

@@ -1,3 +1,6 @@
+import { Post } from './all-posts'
+import { Group } from './group'
+
 export interface UserData {
   authId?: string
   username?: string
@@ -12,12 +15,7 @@ export interface User extends UserData {
   id: number
 }
 
-export interface UserWithPosts extends User {
+export interface UserWithPostsAndGroups extends User {
   posts: Post[]
-}
-
-export interface Post {
-  postId: number
-  text: string
-  createdAt: string
+  group: Group[]
 }

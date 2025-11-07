@@ -1,7 +1,5 @@
-import SignInButton from './SingInButton.tsx'
 import Navbar from './Navbar.tsx'
 import { Outlet } from 'react-router'
-import SignIn from './SignIn.tsx'
 
 function App() {
   return (
@@ -10,7 +8,7 @@ function App() {
         <header>
           <Navbar />
         </header>
-        <main>
+        <main className="pt-44">
           <Outlet />
         </main>
         <footer></footer>
