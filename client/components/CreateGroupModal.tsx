@@ -10,7 +10,7 @@ const emptyGroup: GroupData = {
   createdByUserId: null,
 }
 
-export default function CreateGroupModal({ createGroup }) {
+export default function CreateGroupModal({ open, createGroup, onClose }) {
   const [group, setGroup] = useState(emptyGroup)
   const [missingContent, setMissingContent] = useState(false)
   const [userId, setUserId] = useState(0)
@@ -38,6 +38,12 @@ export default function CreateGroupModal({ createGroup }) {
       setMissingContent(true)
     }
     createGroup({ ...group, createdByUserId: userId })
+    resetClose()
+  }
+
+  const resetClose = () => {
+    setGroup(emptyGroup)
+    onClose()
   }
   const handleChange = (
     key: string,
@@ -46,11 +52,18 @@ export default function CreateGroupModal({ createGroup }) {
     const newGroup = { ...group, [key]: e.target.value }
     setGroup(newGroup)
   }
+
+  if (!open) {
+    return null
+  }
   return (
-    <>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div>
+    // className="flex items-center justify-center"
+    <div>
+      <div className="fixed bottom-0 left-0 right-0 top-0 z-10 bg-[rgba(0,0,0,0.7)]"></div>
+      <div className=" fixed left-1/2 top-1/2 z-10 h-auto w-2/5 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-[#fdf4e0] p-5 shadow-lg shadow-gray-300">
+        <h1 className="text-2xl"> Create your Group</h1>
+        <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+          <div className="flex flex-col">
             <label htmlFor="name">Name</label>
             <input
               onChange={(e) => handleChange('name', e)}
@@ -60,11 +73,10 @@ export default function CreateGroupModal({ createGroup }) {
               value={group.name}
             />
           </div>
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="description">Description</label>
-            <input
+            <textarea
               onChange={(e) => handleChange('description', e)}
-              type="text"
               id="description"
               name="description"
               value={group.description}
@@ -77,11 +89,26 @@ export default function CreateGroupModal({ createGroup }) {
           ) : (
             <p></p>
           )}
-          <div className="self-center rounded-2xl border border-black px-2  shadow-md shadow-gray-400 hover:bg-gray-900 hover:text-[#fdf4e0]">
-            <button type="submit">Submit</button>
+          <div className="flex gap-3">
+            <div>
+              <button
+                onClick={resetClose}
+                className=" rounded-2xl border border-black px-2  shadow-md shadow-gray-400 hover:bg-gray-900 hover:text-[#fdf4e0]"
+              >
+                Cancel
+              </button>
+            </div>
+            <div>
+              <button
+                className=" rounded-2xl border border-black px-2  shadow-md shadow-gray-400 hover:bg-gray-900 hover:text-[#fdf4e0]"
+                type="submit"
+              >
+                Create
+              </button>
+            </div>
           </div>
         </form>
       </div>
-    </>
+    </div>
   )
 }
