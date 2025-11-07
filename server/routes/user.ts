@@ -17,8 +17,8 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const id = Number(req.params.id)
-    const users = await db.getUserById(id)
+    const id = req.params.id
+    const users = await db.getUserByAuthId(id)
     users
       ? res.json(users)
       : res.status(404).json({ message: 'Something went wrong' })

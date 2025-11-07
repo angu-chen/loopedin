@@ -8,6 +8,8 @@ const userSelect = [
   'fullname',
   'location',
   'img',
+  'bio',
+  'cover_img as coverImg',
 ]
 
 export async function getAllUsers(): Promise<User[]> {
@@ -15,9 +17,11 @@ export async function getAllUsers(): Promise<User[]> {
   return userList as User[]
 }
 
-export async function getUserById(id: number): Promise<User | undefined> {
+export async function getUserByAuthId(
+  authId: string,
+): Promise<User | undefined> {
   const userList = await db('user')
-    .where({ id })
+    .where('auth_id', authId)
     .select(...userSelect)
     .first()
   return userList as User
