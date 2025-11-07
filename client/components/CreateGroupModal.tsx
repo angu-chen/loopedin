@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { GroupData } from '../../models/group'
-import { useUser } from '../hooks/useUser'
+import { useGetAllUsers } from '../hooks/useUser'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
 
@@ -17,7 +17,7 @@ export default function CreateGroupModal({ open, createGroup, onClose }) {
   const { user: auth0user } = useAuth0()
   const currentAuthId = auth0user && auth0user.sub ? auth0user.sub : null
 
-  const userQuery = useUser()
+  const userQuery = useGetAllUsers()
 
   useEffect(() => {
     if (userQuery.isSuccess) {

@@ -1,4 +1,6 @@
+// import { useGroup } from '../hooks/useGroup'
 import { useGetUserByLoopId } from '../hooks/useUser'
+import GroupCard from './GroupCard'
 
 interface Props {
   id: number
@@ -6,6 +8,38 @@ interface Props {
 
 export default function ViewProfileDetail({ id }: Props) {
   const { data: user, isError, isPending } = useGetUserByLoopId(id)
+
+  const groups = [
+    {
+      id: 1,
+      name: 'LoopedIn Developers',
+      description:
+        'A community for coders, builders, and tech enthusiasts to share projects, troubleshoot code, and stay ahead of the curve.',
+      createdByUserId: 1,
+    },
+    {
+      id: 2,
+      name: 'Creative Designers',
+      description:
+        'Where imagination meets design. Connect with artists, UI/UX pros, and creative minds to inspire and be inspired.',
+      createdByUserId: 4,
+    },
+  ]
+
+  const posts = [
+    {
+      id: 1,
+      user_id: 1,
+      text: 'Excited to finally join LoopedIn! Can’t wait to connect with other devs 🚀',
+      created_at: '2025-10-30T08:15:00Z',
+    },
+    {
+      id: 2,
+      user_id: 2,
+      text: 'Redesigning my portfolio — less clutter, more clarity ✨ #designlife',
+      created_at: '2025-10-31T10:45:00Z',
+    },
+  ]
 
   if (isError) {
     return <p>Error retrieving profile</p>
@@ -57,9 +91,18 @@ export default function ViewProfileDetail({ id }: Props) {
         </div>
         <div className="p-10">
           <h2>Groups</h2>
+          {groups.map((group) => (
+            <GroupCard group={group} key={group.name} />
+          ))}
         </div>
         <div className="p-10">
           <h2>Posts</h2>
+          {posts.map((post) => (
+            <div key={post.id}>
+              <p>{post.text}</p>
+              <p>{post.created_at}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
