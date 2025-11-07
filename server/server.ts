@@ -2,6 +2,7 @@ import express from 'express'
 import * as Path from 'node:path'
 
 import userRoutes from './routes/user.ts'
+import weatherRoutes from './routes/weather.ts'
 import groupRoutes from './routes/group.ts'
 
 const server = express()
@@ -9,6 +10,7 @@ const server = express()
 server.use(express.json())
 
 server.use('/api/v1/user', userRoutes)
+server.use('/api/v1/weather', weatherRoutes)
 server.use('/api/v1/group', groupRoutes)
 
 if (process.env.NODE_ENV === 'production') {

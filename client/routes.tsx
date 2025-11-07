@@ -5,6 +5,7 @@ import News from './components/News.tsx'
 import SignIn from './components/SignIn.tsx'
 import SignUpForm from './components/SignUpForm.tsx'
 import ViewAllGroups from './components/ViewAllGroups.tsx'
+import Weather from './components/GeoLocator.tsx'
 
 export default createRoutesFromElements(
   <Route path="/" element={<App />}>
@@ -13,5 +14,6 @@ export default createRoutesFromElements(
     <Route path="/profiles" element={<ViewAllProfiles />} />
     <Route path="/groups" element={<ViewAllGroups />} />
     <Route path="/news" element={<News />} />
+    <Route path="/weather" element={<Weather />} />
   </Route>,
 )
