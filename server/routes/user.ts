@@ -15,6 +15,21 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    const users = await db.getUserById(id)
+    users
+      ? res.json(users)
+      : res.status(404).json({ message: 'Something went wrong' })
+  } catch (error) {
+    console.log(
+      error instanceof Error ? error.message : 'Error getting all users',
+    )
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
 router.post('/', async (req, res) => {
   try {
     const newUser = req.body

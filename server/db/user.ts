@@ -15,6 +15,14 @@ export async function getAllUsers(): Promise<User[]> {
   return userList as User[]
 }
 
+export async function getUserById(id: number): Promise<User | undefined> {
+  const userList = await db('user')
+    .where({ id })
+    .select(...userSelect)
+    .first()
+  return userList as User
+}
+
 export async function addUser(user: UserData) {
   const response = await db('user').insert({
     auth_id: user.authId,
