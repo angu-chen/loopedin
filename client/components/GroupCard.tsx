@@ -11,7 +11,7 @@ export default function GroupCard(props: Props) {
         <div className=" h-20 w-20 rounded-xl border-2 border-gray-800 bg-white shadow-md shadow-gray-400">
           <img
             className="object-cover"
-            src="/public/img/group.svg"
+            src="/img/group.svg"
             alt="default group img"
           />
         </div>

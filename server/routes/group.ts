@@ -16,3 +16,16 @@ router.get('/', async (req, res) => {
 })
 
 export default router
+
+router.post('/', async (req, res) => {
+  try {
+    const newGroup = req.body
+    await db.createGroup(newGroup)
+    res.sendStatus(204)
+  } catch (error) {
+    console.log(
+      error instanceof Error ? error.message : 'Error creating new group',
+    )
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
