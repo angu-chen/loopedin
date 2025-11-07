@@ -10,6 +10,8 @@ export function up(knex) {
     table.string('fullname')
     table.string('location')
     table.string('img')
+    table.string('cover_img')
+    table.string('bio')
   })
 }
 
