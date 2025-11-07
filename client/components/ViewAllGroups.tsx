@@ -4,19 +4,14 @@ import type { Group } from '../../models/group'
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import GroupCard from './GroupCard'
-
-const fakeGroup = {
-  id: 3,
-  name: 'Asia Tech Circle',
-  description:
-    'Join tech innovators and entrepreneurs across Asia discussing trends, startups, and the future of digital innovation.',
-  createdByUserId: 3,
-}
+import CreateGroupModal from './CreateGroupModal'
+import { useState } from 'react'
 
 export default function ViewAllGroups() {
   const authData = useAuth0()
-
   const groupQuery = useGroup()
+
+  const [isOpen, setIsOpen] = useState(false)
 
   if (groupQuery.isError) {
     return <p>Error loading groups</p>
@@ -63,6 +58,13 @@ export default function ViewAllGroups() {
         </div>
       </IfNotAuthenticated>
       <IfAuthenticated>
+        <CreateGroupModal
+          open={isOpen}
+          createGroup={groupQuery.createGroup.mutate}
+          onClose={() => {
+            setIsOpen(false)
+          }}
+        />
         <div className="my-10 flex w-full justify-between ">
           <div>
             <h1 className="font-bold italic sm:text-2xl md:text-4xl lg:text-6xl">
@@ -73,7 +75,12 @@ export default function ViewAllGroups() {
             </h1>
           </div>
           <div className="self-end">
-            <button className=" rounded-2xl border-2 border-black px-2 text-lg font-semibold shadow-md shadow-gray-400 hover:bg-gray-900 hover:text-[#fdf4e0] ">
+            <button
+              onClick={() => {
+                setIsOpen(true)
+              }}
+              className=" rounded-2xl border-2 border-black px-2 text-lg font-semibold shadow-md shadow-gray-400 hover:bg-gray-900 hover:text-[#fdf4e0] "
+            >
               {' '}
               Create Group
             </button>
