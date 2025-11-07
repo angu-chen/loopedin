@@ -10,7 +10,7 @@ function App() {
         <header>
           <Navbar />
         </header>
-        <main>
+        <main className="pt-44">
           <Outlet />
         </main>
         <footer></footer>

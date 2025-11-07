@@ -24,7 +24,7 @@ export default function ViewAllProfiles() {
 
   return (
     <div className="text-center ">
-      <h2 className="text-3xl font-bold text-gray-700">Profiles</h2>
+      <h2 className="px-8 py-10 text-3xl font-bold text-gray-700">Profiles</h2>
       <div className="bg-cream m-4 flex flex-auto flex-row flex-wrap items-center gap-10">
         {users.map(
           (user) =>
