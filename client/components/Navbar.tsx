@@ -19,13 +19,13 @@ const Navbar: FC = () => {
         {/* Right Nav links */}
         <div className="text-ls flex items-center gap-8 font-medium text-[#000]">
           <Link
-            to="/"
+            to="/Home"
             className="relative text-black transition duration-200 before:absolute before:left-0 before:top-1/2 before:h-[2px] before:w-0 before:bg-[#c1121f] before:transition-all before:duration-300 hover:text-[#c1121f] hover:before:w-full"
           >
             Home
           </Link>
           <Link
-            to="/"
+            to="/groups"
             className="relative text-black transition duration-200 before:absolute before:left-0 before:top-1/2 before:h-[2px] before:w-0 before:bg-[#c1121f] before:transition-all before:duration-300 hover:text-[#c1121f] hover:before:w-full"
           >
             Groups
@@ -37,7 +37,7 @@ const Navbar: FC = () => {
             View Profiles
           </Link>
           <Link
-            to="/"
+            to="/news"
             className="relative text-black transition duration-200 before:absolute before:left-0 before:top-1/2 before:h-[2px] before:w-0 before:bg-[#c1121f] before:transition-all before:duration-300 hover:text-[#c1121f] hover:before:w-full"
           >
             News
