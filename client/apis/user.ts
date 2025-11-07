@@ -8,6 +8,11 @@ export async function getAllUsers(): Promise<User[]> {
   return response.body as User[]
 }
 
+export async function getUserByAuthId(authId: string): Promise<User> {
+  const response = await request.get(`${rootURL}/user/${authId}`)
+  return response.body as User
+}
+
 export async function addNewUser(user: UserData) {
   await request.post(`${rootURL}/user`).send(user)
   return
