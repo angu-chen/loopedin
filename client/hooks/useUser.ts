@@ -4,13 +4,29 @@ import {
   useQueryClient,
   MutationFunction,
 } from '@tanstack/react-query'
-import { addNewUser, getAllUsers } from '../apis/user.ts'
+import {
+  addNewUser,
+  getAllUsers,
+  getUserByAuthId,
+  // updateUserByAuthId,
+  // deleteUserByAuthId,
+} from '../apis/user.ts'
 
-export function useUser() {
+export function useGetAllUsers() {
   const query = useQuery({ queryKey: ['userList'], queryFn: getAllUsers })
   return {
     ...query,
-    // Extra queries go here e.g. addUser: useAddUser()
+  }
+}
+
+export function useGetUserByAuthId(id: string) {
+  const query = useQuery({
+    queryKey: [`user${id}`],
+    queryFn: () => getUserByAuthId(id),
+  })
+  return {
+    ...query,
+    addUser: useAddUser(),
   }
 }
 
@@ -39,7 +55,14 @@ export function useAddUserMutation() {
   return mutation
 }
 
-// Query functions go here e.g. useAddUser
-/* function useAddUser() {
-  return useUserMutation(addUser)
-} */
+function useAddUser() {
+  return useUserMutation(addNewUser)
+}
+
+// function useUpdateUser() {
+//   return useUserMutation(updateUserById)
+// }
+
+// function useDeleteUser() {
+//   return useUserMutation(deleteUserById)
+// }
