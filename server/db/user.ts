@@ -2,7 +2,7 @@ import db from './connection.ts'
 import { User, UserData } from '../../models/user.ts'
 
 const userSelect = [
-  'id',
+  'user.id as id',
   'auth_Id as authId',
   'username',
   'fullname',
@@ -11,6 +11,8 @@ const userSelect = [
   'bio',
   'cover_img as coverImg',
 ]
+
+// const postSelect = ['post.id as postId', 'text', 'created_at as createdAt']
 
 export async function getAllUsers(): Promise<User[]> {
   const userList = await db('user').select(...userSelect)

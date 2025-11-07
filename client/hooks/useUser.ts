@@ -9,6 +9,7 @@ import {
   getAllUsers,
   getUserByAuthId,
   getUserByLoopId,
+  getUserAndPostsByLoopId,
 } from '../apis/user.ts'
 
 export function useGetAllUsers() {
@@ -32,6 +33,16 @@ export function useGetUserByLoopId(id: number) {
   const query = useQuery({
     queryKey: [`userLoop${id}`],
     queryFn: () => getUserByLoopId(id),
+  })
+  return {
+    ...query,
+  }
+}
+
+export function useGetUserAndPostsByLoopId(id: number) {
+  const query = useQuery({
+    queryKey: [`userLoop${id}`],
+    queryFn: () => getUserAndPostsByLoopId(id),
   })
   return {
     ...query,

@@ -11,3 +11,13 @@ export interface UserData {
 export interface User extends UserData {
   id: number
 }
+
+export interface UserWithPosts extends User {
+  posts: Post[]
+}
+
+export interface Post {
+  postId: number
+  text: string
+  createdAt: string
+}

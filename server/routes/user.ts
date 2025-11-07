@@ -18,13 +18,28 @@ router.get('/', async (req, res) => {
 router.get('/loop/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
-    const users = await db.getUserByLoopId(id)
-    users
-      ? res.json(users)
+    const user = await db.getUserByLoopId(id)
+    user
+      ? res.json(user)
       : res.status(404).json({ message: 'Something went wrong' })
   } catch (error) {
     console.log(
       error instanceof Error ? error.message : 'Error getting all users',
+    )
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
+router.get('/user-and-posts/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    const user = await db.getUserByLoopId(id)
+    user
+      ? res.json(user)
+      : res.status(404).json({ message: 'Something went wrong' })
+  } catch (error) {
+    console.log(
+      error instanceof Error ? error.message : 'Error getting user and posts',
     )
     res.status(500).json({ message: 'Something went wrong' })
   }

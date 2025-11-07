@@ -1,57 +1,34 @@
-// import { useGroup } from '../hooks/useGroup'
-import { useGetUserByLoopId } from '../hooks/useUser'
+import { useGetGroupsByUserId } from '../hooks/useGroup'
+import { useGetUserAndPostsByLoopId } from '../hooks/useUser'
 import GroupCard from './GroupCard'
+import { useAuth0 } from '@auth0/auth0-react'
 
 interface Props {
   id: number
 }
 
 export default function ViewProfileDetail({ id }: Props) {
-  const { data: user, isError, isPending } = useGetUserByLoopId(id)
+  const { data: user, isError, isPending } = useGetUserAndPostsByLoopId(id)
+  const { user: auth0user } = useAuth0()
+  const {
+    data: groups,
+    isError: isGroupError,
+    isPending: isGroupPending,
+  } = useGetGroupsByUserId(id)
 
-  const groups = [
-    {
-      id: 1,
-      name: 'LoopedIn Developers',
-      description:
-        'A community for coders, builders, and tech enthusiasts to share projects, troubleshoot code, and stay ahead of the curve.',
-      createdByUserId: 1,
-    },
-    {
-      id: 2,
-      name: 'Creative Designers',
-      description:
-        'Where imagination meets design. Connect with artists, UI/UX pros, and creative minds to inspire and be inspired.',
-      createdByUserId: 4,
-    },
-  ]
-
-  const posts = [
-    {
-      id: 1,
-      user_id: 1,
-      text: 'Excited to finally join LoopedIn! Can’t wait to connect with other devs 🚀',
-      created_at: '2025-10-30T08:15:00Z',
-    },
-    {
-      id: 2,
-      user_id: 2,
-      text: 'Redesigning my portfolio — less clutter, more clarity ✨ #designlife',
-      created_at: '2025-10-31T10:45:00Z',
-    },
-  ]
-
-  if (isError) {
+  if (isError || isGroupError) {
     return <p>Error retrieving profile</p>
   }
 
-  if (isPending || !user) {
+  if (isPending || !user || isGroupPending || !groups) {
     return <p>Loading...</p>
   }
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.id
   }
+
+  // const thisUsersGroups = groups.filter((group) )
 
   return (
     <div className="p-10">
@@ -67,14 +44,16 @@ export default function ViewProfileDetail({ id }: Props) {
           alt={`Avatar for ${user.fullname}`}
         />
         <div className="p-10 text-right ">
-          {/* //TODO - edit user functionality */}
-          <button
-            id="edit"
-            onClick={handleClick}
-            className="absolute right-36 top-auto rounded-3xl border-2 border-blue-950 p-4 text-xl font-semibold shadow-md shadow-blue-950 hover:bg-blue-300"
-          >
-            Edit profile
-          </button>
+          {/* //TODO - edit user form */}
+          {user.authId && auth0user && auth0user.sub === user.authId && (
+            <button
+              id="edit"
+              onClick={handleClick}
+              className="absolute right-36 top-auto rounded-3xl border-2 border-blue-950 p-4 text-xl font-semibold shadow-md shadow-blue-950 hover:bg-blue-300"
+            >
+              Edit profile
+            </button>
+          )}
         </div>
         <div className="pl-20">
           <h2 className="pb-2 text-4xl font-semibold">
@@ -94,11 +73,17 @@ export default function ViewProfileDetail({ id }: Props) {
         <div className="flex flex-auto flex-row">
           <div className="max-w-2xl p-10 text-center">
             <h2 className=" p-4 text-2xl font-bold">Groups</h2>
-            {groups.map((group) => (
-              <GroupCard group={group} key={group.name} />
-            ))}
+            {!groups[0] && (
+              <p className="text-xl">
+                You do not currently belong to any groups
+              </p>
+            )}
+            {groups[0] &&
+              groups.map((group) => (
+                <GroupCard group={group} key={group.name} />
+              ))}
           </div>
-          <div className="grow p-10 text-center">
+          {/* <div className="grow p-10 text-center">
             <h2 className="p-4 text-2xl font-bold">Posts</h2>
             {posts.map((post) => (
               <div
@@ -109,7 +94,7 @@ export default function ViewProfileDetail({ id }: Props) {
                 <p>{post.created_at}</p>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

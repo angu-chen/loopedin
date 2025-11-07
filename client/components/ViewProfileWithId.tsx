@@ -1,16 +1,22 @@
 import ViewProfileDetail from './ViewProfileDetail'
 import { useParams } from 'react-router'
 
-export default function ViewProfileWithId() {
-  const { id } = useParams()
+interface Props {
+  id?: number
+}
 
-  if (!id) {
+export default function ViewProfileWithId({ id }: Props) {
+  const { id: paramId } = useParams()
+
+  if (!paramId && !id) {
     return <p>Something went wrong</p>
   }
 
+  console.log(id, paramId)
+
   return (
     <>
-      <ViewProfileDetail id={Number(id)} />
+      <ViewProfileDetail id={id ? id : Number(paramId)} />
     </>
   )
 }

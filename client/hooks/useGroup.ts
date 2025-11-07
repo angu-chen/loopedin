@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { createGroup, getAllGroups } from '../apis/group.ts'
+import { createGroup, getAllGroups, getGroupsByUserId } from '../apis/group.ts'
 
 export function useGroup() {
   const query = useQuery({ queryKey: ['groupList'], queryFn: getAllGroups })
@@ -9,6 +9,16 @@ export function useGroup() {
     ...query,
     // Extra queries go here e.g. addUser: useAddUser()
     createGroup,
+  }
+}
+
+export function useGetGroupsByUserId(id: number) {
+  const query = useQuery({
+    queryKey: [`groupsForUser${id}`],
+    queryFn: () => getGroupsByUserId(id),
+  })
+  return {
+    ...query,
   }
 }
 

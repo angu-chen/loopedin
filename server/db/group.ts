@@ -2,7 +2,7 @@ import db from './connection.ts'
 import { GroupData, Group } from '../../models/group.ts'
 
 const groupSelect = [
-  'id',
+  'groups.id as id',
   'name',
   'description',
   'created_by_user_id as createdByUserId',
@@ -20,4 +20,12 @@ export async function createGroup(group: GroupData) {
     created_by_user_id: group.createdByUserId,
   })
   return response
+}
+
+export async function getGroupByUserId(id: number) {
+  const response = await db('group_members')
+    .where('group_members.user_id', id)
+    .join('groups', 'groups.id', 'group_members.group_id')
+    .select(...groupSelect)
+  return response as Group[]
 }

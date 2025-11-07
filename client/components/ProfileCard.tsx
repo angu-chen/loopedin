@@ -36,7 +36,9 @@ export default function ProfileCard({ user }: Props) {
             <div className="flex flex-wrap justify-center">
               <div className="w-full px-6">
                 {user.bio && (
-                  <p className="mb-4 font-light leading-relaxed text-gray-900 dark:text-gray-400"></p>
+                  <p className="mb-4 font-light leading-relaxed text-gray-900 dark:text-gray-400">
+                    {user.bio}
+                  </p>
                 )}
               </div>
             </div>
