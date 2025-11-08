@@ -1,5 +1,6 @@
 import express from 'express'
 import * as db from '../db/all-posts'
+import { PostData } from '../../models/all-posts'
 
 const router = express.Router()
 
@@ -21,6 +22,17 @@ router.get('/:userId', async (req, res) => {
   } catch (err) {
     console.error(err)
     res.status(500).json({ error: 'Failed to fetch posts' })
+  }
+})
+
+router.post('/', async (req, res) => {
+  try {
+    const newPost: PostData = req.body
+    const post = await db.addPost(newPost)
+    res.json(post)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to add post' })
   }
 })
 

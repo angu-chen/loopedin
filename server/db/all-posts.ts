@@ -1,5 +1,5 @@
 import connection from './connection'
-import { Post } from '../../models/all-posts'
+import { Post, PostData } from '../../models/all-posts'
 
 export function getAllPosts(db = connection): Promise<Post[]> {
   return db('post')
@@ -24,4 +24,10 @@ export function getPostsByUserId(id: number): Promise<Post[]> {
       'user.fullname as authorName',
       'user.img as authorImg',
     )
+}
+
+export function addPost(newPost: PostData): Promise<Post> {
+  return connection('post')
+    .insert(newPost)
+    .returning(['post.id', 'post.text', 'post.created_at'])
 }
