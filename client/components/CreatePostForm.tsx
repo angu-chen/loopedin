@@ -19,7 +19,7 @@ export default function CreatePostForm({ submitForm, userId }: Props) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const submitDate = new Date(Date.now()).toLocaleString()
+    const submitDate = new Date(Date.now()).toISOString()
     setFormData({ ...formData, text: '' })
     submitForm({ ...formData, created_at: submitDate })
   }

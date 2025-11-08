@@ -17,12 +17,14 @@ export default function AllPosts() {
     addPost.mutate({ newPost, token: token })
   }
 
+  const postsNewestFirst = posts?.reverse()
+
   return (
     <div className="min-h-screen bg-[#fdf0d5] px-8 py-10 text-center">
       <h2 className="mb-6 text-3xl font-bold text-[#003049]">HomeFeed</h2>
       <div className="flex flex-col items-center gap-6">
         <CreatePostForm userId={1} submitForm={handleAddNewPost} />
-        {posts?.map((post: Post) => (
+        {postsNewestFirst?.map((post: Post) => (
           <div key={post.id} className="mx-auto w-full max-w-3xl">
             <PostCard post={post} />
           </div>
