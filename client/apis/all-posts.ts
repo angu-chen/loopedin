@@ -8,7 +8,18 @@ export async function getAllPosts(): Promise<Post[]> {
   return res.body as Post[]
 }
 
-export async function addPost(newPost: PostData): Promise<Post[]> {
-  const res = await request.post(`${rootURL}`).send(newPost)
+interface AddPostFunction {
+  newPost: PostData
+  token: string
+}
+
+export async function addPost({
+  newPost,
+  token,
+}: AddPostFunction): Promise<Post[]> {
+  const res = await request
+    .post(`${rootURL}`)
+    .set('Authorisation', `Bearer ${token}`)
+    .send(newPost)
   return res.body as Post[]
 }

@@ -1,6 +1,7 @@
 import express from 'express'
 import * as db from '../db/all-posts'
 import { PostData } from '../../models/all-posts'
+// import checkJwt, { JwtRequest } from '../auth0'
 
 const router = express.Router()
 
@@ -27,7 +28,7 @@ router.get('/:userId', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const newPost: PostData = req.body
+    const newPost = req.body as PostData
     const post = await db.addPost(newPost)
     res.json(post)
   } catch (err) {
