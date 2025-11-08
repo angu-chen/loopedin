@@ -12,8 +12,6 @@ export default function ViewProfileWithId({ id }: Props) {
     return <p>Something went wrong</p>
   }
 
-  console.log(id, paramId)
-
   return (
     <>
       <ViewProfileDetail id={id ? id : Number(paramId)} />

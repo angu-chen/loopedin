@@ -7,7 +7,7 @@ import SignUpForm from './components/SignUpForm.tsx'
 import ViewAllGroups from './components/ViewAllGroups.tsx'
 import Weather from './components/GeoLocator.tsx'
 import ViewProfileWithId from './components/ViewProfileWithId.tsx'
-import AuthId from './components/AuthId.tsx'
+import LoadAuthId from './components/LoadAuthId.tsx'
 import AllPosts from './components/AllPosts.tsx'
 
 export default createRoutesFromElements(
@@ -20,6 +20,6 @@ export default createRoutesFromElements(
     <Route path="/news" element={<News />} />
     <Route path="/weather" element={<Weather />} />
     <Route path="/profiles/:id" element={<ViewProfileWithId />} />
-    <Route path="/profile" element={<AuthId />} />
+    <Route path="/profile" element={<LoadAuthId />} />
   </Route>,
 )
