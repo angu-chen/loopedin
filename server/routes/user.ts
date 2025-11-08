@@ -1,5 +1,7 @@
 import { Router } from 'express'
 import * as db from '../db/user.ts'
+import { getPostsByUserId } from '../db/all-posts.ts'
+import { getGroupByUserId } from '../db/group.ts'
 
 const router = Router()
 
@@ -30,12 +32,14 @@ router.get('/loop/:id', async (req, res) => {
   }
 })
 
-router.get('/user-and-posts/:id', async (req, res) => {
+router.get('/posts-and-groups/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
     const user = await db.getUserByLoopId(id)
-    user
-      ? res.json(user)
+    const posts = await getPostsByUserId(id)
+    const groups = await getGroupByUserId(id)
+    user && posts && groups
+      ? res.json({ ...user, posts: posts, groups: groups })
       : res.status(404).json({ message: 'Something went wrong' })
   } catch (error) {
     console.log(

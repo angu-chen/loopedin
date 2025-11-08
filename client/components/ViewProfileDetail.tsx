@@ -1,5 +1,5 @@
-import { useGetGroupsByUserId } from '../hooks/useGroup'
-import { useGetUserByLoopId } from '../hooks/useUser'
+import { useGetUserWithPostsAndGroups } from '../hooks/useUser'
+import PostCard from './AllPostsCard'
 import GroupCard from './GroupCard'
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -8,27 +8,21 @@ interface Props {
 }
 
 export default function ViewProfileDetail({ id }: Props) {
-  const { data: user, isError, isPending } = useGetUserByLoopId(id)
+  const { data: user, isError, isPending } = useGetUserWithPostsAndGroups(id)
   const { user: auth0user } = useAuth0()
-  const {
-    data: groups,
-    isError: isGroupError,
-    isPending: isGroupPending,
-  } = useGetGroupsByUserId(id)
 
-  if (isError || isGroupError) {
+  if (isError) {
     return <p>Error retrieving profile</p>
   }
 
-  if (isPending || !user || isGroupPending || !groups) {
+  if (isPending || !user) {
     return <p>Loading...</p>
   }
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.id
-  }
+  const handleClick = () => {}
 
-  // const thisUsersGroups = groups.filter((group) )
+  const posts = user.posts
+  const groups = user.groups
 
   return (
     <div className="p-10">
@@ -74,27 +68,19 @@ export default function ViewProfileDetail({ id }: Props) {
           <div className="max-w-2xl p-10 text-center">
             <h2 className=" p-4 text-2xl font-bold">Groups</h2>
             {!groups[0] && (
-              <p className="text-xl">
-                You do not currently belong to any groups
-              </p>
+              <p className="text-xl">Not currently a member of any groups</p>
             )}
             {groups[0] &&
               groups.map((group) => (
                 <GroupCard group={group} key={group.name} />
               ))}
           </div>
-          {/* <div className="grow p-10 text-center">
+          <div className="grow p-10 text-center">
             <h2 className="p-4 text-2xl font-bold">Posts</h2>
             {posts.map((post) => (
-              <div
-                key={post.id}
-                className="mb-6 rounded-xl border-2 border-gray-800 p-6 shadow-lg shadow-gray-400"
-              >
-                <p className="text-xl">{post.text}</p>
-                <p>{post.created_at}</p>
-              </div>
+              <PostCard key={post.id} post={post} />
             ))}
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

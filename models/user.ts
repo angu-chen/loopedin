@@ -17,5 +17,5 @@ export interface User extends UserData {
 
 export interface UserWithPostsAndGroups extends User {
   posts: Post[]
-  group: Group[]
+  groups: Group[]
 }
