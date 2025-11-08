@@ -13,7 +13,6 @@ export default function AllPosts() {
 
   const handleAddNewPost = async (newPost: PostData) => {
     const token = await getAccessTokenSilently()
-    console.log(token)
     addPost.mutate({ newPost, token: token })
   }
 
