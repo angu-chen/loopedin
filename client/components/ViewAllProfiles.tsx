@@ -1,10 +1,10 @@
-import { useUser } from '../hooks/useUser'
+import { useGetAllUsers } from '../hooks/useUser'
 import type { User } from '../../models/user'
 import ProfileCard from './ProfileCard'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function ViewAllProfiles() {
-  const userQuery = useUser()
+  const userQuery = useGetAllUsers()
   const { user: auth0user } = useAuth0()
   const currentAuthId = auth0user && auth0user.sub ? auth0user.sub : null
 

@@ -21,6 +21,7 @@ export async function seed(knex) {
       fullname: 'Sara Williams',
       location: 'London, UK',
       img: '/img/users/sara.svg',
+      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim erat nec mattis mattis. ',
     },
     {
       id: 3,
@@ -29,6 +30,7 @@ export async function seed(knex) {
       fullname: 'Lee Chen',
       location: 'Singapore',
       img: '/img/users/lee.svg',
+      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim erat nec mattis mattis. Quisque quis arcu eget sem luctus lacinia quis eget augue.',
     },
     {
       id: 4,
@@ -37,6 +39,7 @@ export async function seed(knex) {
       fullname: 'Mariah Gomez',
       location: 'Madrid, Spain',
       img: '/img/users/mariah.svg',
+      bio: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.',
     },
     {
       id: 5,
@@ -44,6 +47,7 @@ export async function seed(knex) {
       username: 'david.k',
       fullname: 'David Kim',
       location: 'Seoul, South Korea',
+      bio: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
     },
     {
       id: 6,
@@ -52,6 +56,7 @@ export async function seed(knex) {
       fullname: 'Nina Patel',
       location: 'Toronto, Canada',
       img: '/img/users/nina.svg',
+      bio: 'Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.',
     },
   ])
 }

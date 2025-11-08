@@ -2,17 +2,39 @@ import db from './connection.ts'
 import { User, UserData } from '../../models/user.ts'
 
 const userSelect = [
-  'id',
+  'user.id as id',
   'auth_Id as authId',
   'username',
   'fullname',
   'location',
   'img',
+  'bio',
+  'cover_img as coverImg',
 ]
+
+// const postSelect = ['post.id as postId', 'text', 'created_at as createdAt']
 
 export async function getAllUsers(): Promise<User[]> {
   const userList = await db('user').select(...userSelect)
   return userList as User[]
+}
+
+export async function getUserByAuthId(
+  authId: string,
+): Promise<User | undefined> {
+  const user = await db('user')
+    .where('auth_id', authId)
+    .select(...userSelect)
+    .first()
+  return user as User | undefined
+}
+
+export async function getUserByLoopId(id: number): Promise<User | undefined> {
+  const user = await db('user')
+    .where({ id })
+    .select(...userSelect)
+    .first()
+  return user as User | undefined
 }
 
 export async function addUser(user: UserData) {

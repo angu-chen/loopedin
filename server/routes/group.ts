@@ -15,7 +15,18 @@ router.get('/', async (req, res) => {
   }
 })
 
-export default router
+router.get('/for-user/:userId', async (req, res) => {
+  try {
+    const id = Number(req.params.userId)
+    const groups = await db.getGroupByUserId(id)
+    res.json(groups)
+  } catch (error) {
+    console.log(
+      error instanceof Error ? error.message : 'Error getting all groups',
+    )
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
 
 router.post('/', async (req, res) => {
   try {
@@ -29,3 +40,5 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Something went wrong' })
   }
 })
+
+export default router

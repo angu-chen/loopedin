@@ -12,3 +12,16 @@ export function getAllPosts(db = connection): Promise<Post[]> {
       'user.img as authorImg',
     )
 }
+
+export function getPostsByUserId(id: number): Promise<Post[]> {
+  return connection('post')
+    .join('user', 'post.user_id', 'user.id')
+    .where('post.user_id', id)
+    .select(
+      'post.id',
+      'post.text',
+      'post.created_at',
+      'user.fullname as authorName',
+      'user.img as authorImg',
+    )
+}

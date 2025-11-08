@@ -7,8 +7,7 @@ interface Props {
 
 export default function ProfileCard({ user }: Props) {
   return (
-    <div className="  group relative mx-auto mb-6 mt-20 w-full min-w-0 max-w-md break-words rounded-xl border bg-white shadow-2xl md:max-w-sm dark:border-gray-700 dark:bg-gray-800">
-      {/* //TODO - check link is correct */}
+    <div className="group relative mx-auto mb-6 mt-20 w-full min-w-0 max-w-md break-words rounded-xl border bg-white shadow-2xl md:max-w-sm dark:border-gray-700 dark:bg-gray-800">
       <Link to={`/profiles/${user.id}`}>
         <div className="rounded-xl border border-solid border-blue-950 bg-blue-100 pb-6 ">
           <div className="flex flex-wrap justify-center">
@@ -33,14 +32,14 @@ export default function ProfileCard({ user }: Props) {
               </div>
             </div>
           </div>
-          {/* TODO - add bio to profile? */}
           <div className="mx-6 mt-6 border-t border-gray-200 pt-6 text-center dark:border-gray-700/50">
             <div className="flex flex-wrap justify-center">
               <div className="w-full px-6">
-                <p className="mb-4 font-light leading-relaxed text-gray-900 dark:text-gray-400">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                  turpis orci.
-                </p>
+                {user.bio && (
+                  <p className="mb-4 font-light leading-relaxed text-gray-900 dark:text-gray-400">
+                    {user.bio}
+                  </p>
+                )}
               </div>
             </div>
           </div>

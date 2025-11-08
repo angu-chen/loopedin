@@ -1,7 +1,7 @@
 import request from 'superagent'
 import { Post } from '../../models/all-posts'
 
-const rootURL = '/api/v1/posts'
+const rootURL = new URL(`/api/v1/posts`, document.baseURI)
 
 export async function getAllPosts(): Promise<Post[]> {
   const res = await request.get(rootURL)

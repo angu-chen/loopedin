@@ -1,7 +1,5 @@
-import SignInButton from './SingInButton.tsx'
 import Navbar from './Navbar.tsx'
 import { Outlet } from 'react-router'
-import SignIn from './SignIn.tsx'
 
 function App() {
   return (

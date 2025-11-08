@@ -12,3 +12,8 @@ export async function createGroup(group: GroupData) {
   await request.post(`${rootURL}/group`).send(group)
   return
 }
+
+export async function getGroupsByUserId(id: number): Promise<Group[]> {
+  const response = await request.get(`${rootURL}/group/for-user/${id}`)
+  return response.body as Group[]
+}

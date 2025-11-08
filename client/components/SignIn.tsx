@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-import { useUser } from '../hooks/useUser'
+import { useGetAllUsers } from '../hooks/useUser'
 import { useEffect } from 'react'
 import { User } from '../../models/user'
 import { useNavigate } from 'react-router'
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router'
 function SignIn() {
   const authData = useAuth0()
 
-  const userQuery = useUser()
+  const userQuery = useGetAllUsers()
   const navigate = useNavigate()
 
   useEffect(() => {

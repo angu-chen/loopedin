@@ -13,4 +13,15 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/:userId', async (req, res) => {
+  try {
+    const userId = Number(req.params.userId)
+    const posts = await db.getPostsByUserId(userId)
+    res.json(posts)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to fetch posts' })
+  }
+})
+
 export default router
