@@ -18,6 +18,8 @@ export default function AllPosts() {
     addPost.mutate({ newPost: postData, token: token })
   }
 
+  console.log(user?.sub)
+
   const postsNewestFirst = posts?.reverse()
 
   return (
