@@ -1,21 +1,27 @@
 import { Group } from '../../models/group'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
   group: Group
 }
 
 export default function GroupCard(props: Props) {
+  const navigate = useNavigate() 
+
   return (
-    <div className=" flex h-48 flex-col overflow-hidden rounded-xl border-2 border-[#c1121f] bg-[white] p-3 shadow-lg shadow-gray-400">
+    <div
+      onClick={() => navigate(`/groups/${props.group.id}`)} 
+      className="flex h-48 flex-col overflow-hidden rounded-xl border-2 border-[#c1121f] bg-white p-3 shadow-lg shadow-gray-400 cursor-pointer hover:scale-[1.02] transition-transform"
+    >
       <div className="mb-3 flex items-center">
-        <div className=" h-20 w-20 rounded-xl border-2 border-gray-800 bg-white shadow-md shadow-gray-400">
+        <div className="h-20 w-20 rounded-xl border-2 border-gray-800 bg-white shadow-md shadow-gray-400">
           <img
             className="object-cover"
             src="/img/group.svg"
             alt="default group img"
           />
         </div>
-        <h1 className=" mx-10 font-semibold  sm:text-lg md:text-2xl lg:text-4xl">
+        <h1 className="mx-10 font-semibold sm:text-lg md:text-2xl lg:text-4xl">
           {props.group.name}
         </h1>
       </div>
