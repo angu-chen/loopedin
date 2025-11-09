@@ -8,10 +8,11 @@ import Weather from './components/GeoLocator.tsx'
 import ViewProfileWithId from './components/ViewProfileWithId.tsx'
 import LoadAuthId from './components/LoadAuthId.tsx'
 import AllPosts from './components/AllPosts.tsx'
+import SignIn from './components/SignIn.tsx'
 
 export default createRoutesFromElements(
   <Route path="/" element={<App />}>
-    <Route index element={<AllPosts />} />
+    <Route index element={<SignIn />} />
     <Route path="/signUp" element={<SignUpForm />} />
     <Route path="/all-posts" element={<AllPosts />} />
     <Route path="/profiles" element={<ViewAllProfiles />} />
