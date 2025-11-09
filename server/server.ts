@@ -14,6 +14,7 @@ server.use('/api/v1/user', userRoutes)
 server.use('/api/v1/weather', weatherRoutes)
 server.use('/api/v1/group', groupRoutes)
 server.use('/api/v1/posts', allPostsRoutes)
+server.use('/uploads', express.static('public/uploads'))
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
