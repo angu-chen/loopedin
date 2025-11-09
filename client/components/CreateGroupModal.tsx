@@ -59,9 +59,9 @@ export default function CreateGroupModal({ open, createGroup, onClose }) {
   return (
     // className="flex items-center justify-center"
     <>
-      <div className="fixed bottom-0 left-0 right-0 top-0 z-10 bg-[rgba(0,0,0,0.7)]"></div>
-      <div className="relative left-1/2 top-1/2 z-10 h-auto w-2/5 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-[#fdf4e0] p-5 shadow-lg shadow-gray-300">
-        <div className="absolute right-2 top-1">
+      <div className="insert-0 fixed z-40 flex items-center justify-center bg-black/70"></div>
+      <div className="relative z-50 w-full max-w-lg rounded-xl bg-[#fdf4e0] p-6 shadow-2xl shadow-gray-800">
+        <div className="absolute right-3 top-3 text-2xl font-bold text-gray-800 hover:text-[#c1121f]">
           <button className="hover:font-bold" onClick={resetClose}>
             X
           </button>
