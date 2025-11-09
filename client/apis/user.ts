@@ -34,3 +34,12 @@ export async function addNewUser(user: UserData) {
   await request.post(`${rootURL}/user`).send(user)
   return
 }
+
+export async function updateUser(id: number, formData: FormData) {
+  const response = await request
+    .put(`${rootURL}/user/${id}`)
+    .set('accept', 'application/json')
+    .type('form')
+    .send(formData)
+  return response.body
+}
