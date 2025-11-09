@@ -4,7 +4,7 @@ import connection from './connection.ts'
 
 const userSelect = [
   'user.id as id',
-  'auth_Id as authId',
+  'auth_id as authId',
   'username',
   'fullname',
   'location',
