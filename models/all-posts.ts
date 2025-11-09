@@ -1,4 +1,5 @@
-export interface PostData {
+export interface Post {
+  id: number
   user_id: number
   text: string
   created_at: string
@@ -6,6 +7,8 @@ export interface PostData {
   authorImg?: string
 }
 
-export interface Post extends PostData {
-  id: number
+export interface PostData {
+  authId: string
+  text: string
+  created_at: string
 }

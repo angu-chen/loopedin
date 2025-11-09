@@ -2,15 +2,15 @@ import { useState } from 'react'
 import { PostData } from '../../models/all-posts'
 
 interface Props {
-  userId: number
+  authId: string
   submitForm: (newPost: PostData) => void
 }
 
-export default function CreatePostForm({ submitForm, userId }: Props) {
+export default function CreatePostForm({ submitForm, authId }: Props) {
   const [formData, setFormData] = useState<PostData>({
-    user_id: userId,
+    authId: authId,
     text: '',
-    created_at: 'string',
+    created_at: '',
   })
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
