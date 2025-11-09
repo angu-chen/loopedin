@@ -63,7 +63,6 @@ router.get('/posts-and-groups/:id', async (req, res) => {
 router.get('/auth/:id', async (req, res) => {
   try {
     const id = req.params.id
-    console.log(id)
     const users = await db.getUserByAuthId(id)
     users
       ? res.json(users)

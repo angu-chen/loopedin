@@ -16,7 +16,6 @@ export default function LoadAuthId() {
   if (!user || !user.sub) {
     return <SignIn />
   }
-  console.log(user.sub)
 
   return <CurrentUserId authId={user.sub} />
 }
