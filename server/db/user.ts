@@ -1,5 +1,6 @@
 import db from './connection.ts'
 import { User, UserData } from '../../models/user.ts'
+import connection from './connection.ts'
 
 const userSelect = [
   'user.id as id',
@@ -47,4 +48,12 @@ export async function addUser(user: UserData) {
   })
 
   return response
+}
+
+export async function updateUser(id: number, user: UserData): Promise<User> {
+  const updated = await connection('user')
+    .where({ id })
+    .update(user)
+    .returning('*')
+  return updated[0] as User
 }
