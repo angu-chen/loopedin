@@ -6,3 +6,9 @@ export interface Post {
   authorName?: string
   authorImg?: string
 }
+
+export interface PostData {
+  authId: string
+  text: string
+  created_at: string
+}
