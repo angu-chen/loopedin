@@ -5,11 +5,13 @@
 export function up(knex) {
   return knex.schema.createTable('user', (table) => {
     table.increments('id')
-    table.integer('auth_id')
+    table.string('auth_id')
     table.string('username')
     table.string('fullname')
     table.string('location')
     table.string('img')
+    table.string('cover_img')
+    table.string('bio')
   })
 }
 

@@ -1,15 +1,17 @@
-import { useFruits } from '../hooks/useFruits.ts'
+import Navbar from './Navbar.tsx'
+import { Outlet } from 'react-router'
 
 function App() {
-  const { data } = useFruits()
-
   return (
     <>
-      <div className="app">
-        <h1 className="text-3xl font-bold underline">
-          Fullstack Boilerplate - with Fruits!
-        </h1>
-        <ul>{data && data.map((fruit) => <li key={fruit}>{fruit}</li>)}</ul>
+      <div className="min-h-screen bg-[#fdf0d5]">
+        <header>
+          <Navbar />
+        </header>
+        <main className="pt-44">
+          <Outlet />
+        </main>
+        <footer></footer>
       </div>
     </>
   )
